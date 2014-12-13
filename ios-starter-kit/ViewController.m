@@ -6,7 +6,10 @@
 //  Copyright (c) 2014 Pirate. All rights reserved.
 //
 
+#import "CocoaLumberjack/DDLog.h"
 #import "ViewController.h"
+
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 @interface ViewController ()
 
@@ -16,12 +19,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-}
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    DDLogError(@"This is an error log.");
+    DDLogWarn(@"This is a warning log.");
+    DDLogInfo(@"This is a info log.");
+    DDLogDebug(@"This is a debug log.");
+    DDLogVerbose(@"This is a verbose log");
 }
 
 @end

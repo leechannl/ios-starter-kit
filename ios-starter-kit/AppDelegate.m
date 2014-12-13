@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "CocoaLumberjack/CocoaLumberjack.h"
+#import "loggerFormatter.h"
 
 @interface AppDelegate ()
 
@@ -16,7 +18,22 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+
+    // Get app document directory
+    [self applicationDocumentsDirectory];
+    // Config logger - CocoaLumberjack
+    // Log levels: LOG_LEVEL_OFF < LOG_LEVEL_ERROR < LOG_LEVEL_WARN < LOG_LEVEL_INFO < LOG_LEVEL_DEBUG < LOG_LEVEL_VERBOSE
+    // Log macros: DDLogError < DDLogWarn < DDLogInfo < DDLogDebug < DDLogVerbose
+    [DDLog addLogger:[DDASLLogger sharedInstance] withLevel:DDLogLevelVerbose];
+    [DDLog addLogger:[DDTTYLogger sharedInstance] withLevel:DDLogLevelDebug];
+    [[DDTTYLogger sharedInstance] setColorsEnabled:YES];
+    loggerFormatter *formatter = [[loggerFormatter alloc] init];
+    [[DDTTYLogger sharedInstance] setLogFormatter:formatter];
+    DDFileLogger *fileLogger = [[DDFileLogger alloc] init];
+    fileLogger.rollingFrequency = 60 * 60 * 24; // 24 hour rolling
+    fileLogger.logFileManager.maximumNumberOfLogFiles = 7;
+    [DDLog addLogger:fileLogger withLevel:DDLogLevelWarning];
+
     return YES;
 }
 
@@ -40,6 +57,14 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+// Returns the URL to the application's Documents directory.
+- (NSURL *)applicationDocumentsDirectory
+{
+    NSLog(@"Application document directory: %@",[[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory  inDomains:NSUserDomainMask] lastObject]);
+
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
 @end
