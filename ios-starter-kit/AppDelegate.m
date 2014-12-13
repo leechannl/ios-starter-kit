@@ -7,8 +7,10 @@
 //
 
 #import "AppDelegate.h"
-#import "CocoaLumberjack/CocoaLumberjack.h"
+#import "CocoaLumberjack/DDLog.h"
 #import "loggerFormatter.h"
+
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 @interface AppDelegate ()
 
@@ -19,20 +21,26 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-    // Get app document directory
-    [self applicationDocumentsDirectory];
     // Config logger - CocoaLumberjack
     // Log levels: LOG_LEVEL_OFF < LOG_LEVEL_ERROR < LOG_LEVEL_WARN < LOG_LEVEL_INFO < LOG_LEVEL_DEBUG < LOG_LEVEL_VERBOSE
     // Log macros: DDLogError < DDLogWarn < DDLogInfo < DDLogDebug < DDLogVerbose
     [DDLog addLogger:[DDASLLogger sharedInstance] withLevel:DDLogLevelVerbose];
-    [DDLog addLogger:[DDTTYLogger sharedInstance] withLevel:DDLogLevelDebug];
+    [DDLog addLogger:[DDTTYLogger sharedInstance] withLevel:DDLogLevelVerbose];
     [[DDTTYLogger sharedInstance] setColorsEnabled:YES];
     loggerFormatter *formatter = [[loggerFormatter alloc] init];
     [[DDTTYLogger sharedInstance] setLogFormatter:formatter];
+    [[DDTTYLogger sharedInstance] setForegroundColor:[UIColor colorWithRed:0.750 green:0.137 blue:0.017 alpha:1.000] backgroundColor:nil forFlag:DDLogFlagError];
+    [[DDTTYLogger sharedInstance] setForegroundColor:[UIColor orangeColor] backgroundColor:nil forFlag:DDLogFlagWarning];
+    [[DDTTYLogger sharedInstance] setForegroundColor:[UIColor colorWithRed:0.000 green:0.502 blue:0.251 alpha:1.000] backgroundColor:nil forFlag:DDLogFlagInfo];
+    [[DDTTYLogger sharedInstance] setForegroundColor:[UIColor colorWithRed:0.000 green:0.502 blue:1.000 alpha:1.000] backgroundColor:nil forFlag:DDLogFlagDebug];
+    [[DDTTYLogger sharedInstance] setForegroundColor:[UIColor blueColor] backgroundColor:nil forFlag:DDLogFlagVerbose];
     DDFileLogger *fileLogger = [[DDFileLogger alloc] init];
     fileLogger.rollingFrequency = 60 * 60 * 24; // 24 hour rolling
     fileLogger.logFileManager.maximumNumberOfLogFiles = 7;
     [DDLog addLogger:fileLogger withLevel:DDLogLevelWarning];
+
+    // Get app document directory
+    [self applicationDocumentsDirectory];
 
     return YES;
 }
@@ -62,7 +70,7 @@
 // Returns the URL to the application's Documents directory.
 - (NSURL *)applicationDocumentsDirectory
 {
-    NSLog(@"Application document directory: %@",[[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory  inDomains:NSUserDomainMask] lastObject]);
+    DDLogInfo(@"Application document directory: %@",[[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory  inDomains:NSUserDomainMask] lastObject]);
 
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }

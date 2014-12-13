@@ -4,7 +4,7 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
 target 'ios-starter-kit' do
-  pod 'CocoaLumberjack'
+  pod 'CocoaLumberjack', '2.0.0-rc'
 end
 
 target 'ios-starter-kitTests' do
