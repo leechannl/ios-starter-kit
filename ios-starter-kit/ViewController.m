@@ -9,7 +9,7 @@
 #import "CocoaLumberjack/DDLog.h"
 #import "ViewController.h"
 
-static const int ddLogLevel = LOG_LEVEL_ALL;
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 @interface ViewController ()
 

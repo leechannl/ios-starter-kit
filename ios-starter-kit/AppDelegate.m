@@ -37,7 +37,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     DDFileLogger *fileLogger = [[DDFileLogger alloc] init];
     fileLogger.rollingFrequency = 60 * 60 * 24; // 24 hour rolling
     fileLogger.logFileManager.maximumNumberOfLogFiles = 7;
-    [DDLog addLogger:fileLogger withLevel:DDLogLevelWarning];
+    [DDLog addLogger:fileLogger withLevel:DDLogLevelVerbose];
 
     // Get app document directory
     [self applicationDocumentsDirectory];

@@ -12,7 +12,7 @@
 
 - (NSString *)formatLogMessage:(DDLogMessage *)logMessage
 {
-    return [NSString stringWithFormat:@"%@ | %@ | %@ @ %i | %@", logMessage.timestamp, logMessage.fileName, logMessage.function, logMessage.line, logMessage.message];
+    return [NSString stringWithFormat:@"%@ | %@ | %@ @ %i | %@", logMessage.timestamp, logMessage.fileName, logMessage.function, (int)logMessage.line, logMessage.message];
 }
 
 @end
