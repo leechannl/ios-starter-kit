@@ -5,6 +5,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 target 'ios-starter-kit' do
   pod 'CocoaLumberjack', '2.0.0-rc'
+  pod 'DateTools', '1.5.0'
 end
 
 target 'ios-starter-kitTests' do

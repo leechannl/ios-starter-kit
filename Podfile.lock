@@ -7,11 +7,14 @@ PODS:
     - CocoaLumberjack/Core
   - CocoaLumberjack/Extensions (2.0.0-rc):
     - CocoaLumberjack/Default
+  - DateTools (1.5.0)
 
 DEPENDENCIES:
   - CocoaLumberjack (= 2.0.0-rc)
+  - DateTools (= 1.5.0)
 
 SPEC CHECKSUMS:
   CocoaLumberjack: 6186e27827fc574b50b16c10102fcc591437f06c
+  DateTools: 7df78f0c4719eb28cfd2d58a90fafd036e73156c
 
 COCOAPODS: 0.35.0
