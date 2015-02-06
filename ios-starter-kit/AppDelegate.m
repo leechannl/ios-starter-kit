@@ -29,11 +29,11 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [[DDTTYLogger sharedInstance] setColorsEnabled:YES];
     loggerFormatter *formatter = [[loggerFormatter alloc] init];
     [[DDTTYLogger sharedInstance] setLogFormatter:formatter];
-    [[DDTTYLogger sharedInstance] setForegroundColor:[UIColor colorWithRed:0.750 green:0.137 blue:0.017 alpha:1.000] backgroundColor:nil forFlag:DDLogFlagError];
-    [[DDTTYLogger sharedInstance] setForegroundColor:[UIColor orangeColor] backgroundColor:nil forFlag:DDLogFlagWarning];
-    [[DDTTYLogger sharedInstance] setForegroundColor:[UIColor colorWithRed:0.000 green:0.502 blue:0.251 alpha:1.000] backgroundColor:nil forFlag:DDLogFlagInfo];
-    [[DDTTYLogger sharedInstance] setForegroundColor:[UIColor colorWithRed:0.000 green:0.502 blue:1.000 alpha:1.000] backgroundColor:nil forFlag:DDLogFlagDebug];
-    [[DDTTYLogger sharedInstance] setForegroundColor:[UIColor blueColor] backgroundColor:nil forFlag:DDLogFlagVerbose];
+    [[DDTTYLogger sharedInstance] setForegroundColor:[UIColor colorWithRed:1.000 green:0.118 blue:0.114 alpha:1.000] backgroundColor:nil forFlag:DDLogFlagError];
+    [[DDTTYLogger sharedInstance] setForegroundColor:[UIColor colorWithRed:1.000 green:0.514 blue:0.000 alpha:1.000] backgroundColor:nil forFlag:DDLogFlagWarning];
+    [[DDTTYLogger sharedInstance] setForegroundColor:[UIColor colorWithRed:0.482 green:0.482 blue:0.506 alpha:1.000] backgroundColor:nil forFlag:DDLogFlagInfo];
+    [[DDTTYLogger sharedInstance] setForegroundColor:[UIColor colorWithRed:0.278 green:0.729 blue:0.984 alpha:1.000] backgroundColor:nil forFlag:DDLogFlagDebug];
+    [[DDTTYLogger sharedInstance] setForegroundColor:[UIColor colorWithRed:0.000 green:0.353 blue:1.000 alpha:1.000] backgroundColor:nil forFlag:DDLogFlagVerbose];
     DDFileLogger *fileLogger = [[DDFileLogger alloc] init];
     fileLogger.rollingFrequency = 60 * 60 * 24; // 24 hour rolling
     fileLogger.logFileManager.maximumNumberOfLogFiles = 7;
